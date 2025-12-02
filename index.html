@@ -22,11 +22,13 @@
     }
     a { color: var(--accent-soft); text-decoration: none; }
     a:hover { text-decoration: underline; }
+
     .page {
       max-width: 1080px;
       margin: 0 auto;
       padding: 24px 16px 72px;
     }
+
     header {
       display: flex;
       align-items: center;
@@ -34,11 +36,13 @@
       gap: 16px;
       margin-bottom: 24px;
     }
+
     .logo-wrap {
       display: flex;
       align-items: center;
       gap: 12px;
     }
+
     .logo-circle {
       width: 60px;
       height: 60px;
@@ -57,6 +61,7 @@
       height: 100%;
       object-fit: contain;
     }
+
     .brand-text h1 {
       font-size: 1.4rem;
       letter-spacing: 0.12em;
@@ -66,6 +71,74 @@
       font-size: 0.8rem;
       color: var(--muted);
     }
+
+    /* INTRO ALKEMIA */
+    .intro {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px 16px;
+      background: radial-gradient(circle at top, #1c0f15 0, #050509 55%);
+    }
+    .intro-logo {
+      width: 180px;
+      height: 180px;
+      border-radius: 999px;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      box-shadow: 0 0 30px rgba(143,1,1,0.7);
+      animation: dragonGlow 3.5s ease-in-out infinite;
+      overflow: hidden;
+      background: radial-gradient(circle at top, rgba(143,1,1,0.3), transparent);
+    }
+    .intro-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      animation: dragonFloat 6s ease-in-out infinite;
+    }
+    .intro h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .intro p {
+      color: var(--muted);
+      max-width: 420px;
+      margin: 0 auto 18px;
+      font-size: 0.95rem;
+    }
+    .intro .btn-primary {
+      margin-top: 8px;
+    }
+
+    @keyframes dragonGlow {
+      0%, 100% {
+        box-shadow: 0 0 16px rgba(143,1,1,0.5);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 36px rgba(255,115,115,0.9);
+        transform: scale(1.04);
+      }
+    }
+    @keyframes dragonFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    /* CONTENIDO PRINCIPAL */
     .hero {
       margin-top: 16px;
       display: grid;
@@ -142,7 +215,9 @@
     .hero-card strong {
       color: var(--accent-soft);
     }
+
     section { margin-top: 36px; }
+
     h3.section-title {
       font-size: 1rem;
       text-transform: uppercase;
@@ -155,6 +230,7 @@
       color: var(--muted);
       margin-bottom: 14px;
     }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -185,6 +261,7 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
+
     .testimonial {
       font-size: 0.9rem;
       color: var(--muted);
@@ -198,6 +275,7 @@
       color: var(--accent-soft);
       font-size: 0.8rem;
     }
+
     .contact-block {
       background: linear-gradient(135deg, rgba(143,1,1,0.18), rgba(255,255,255,0.04));
       border-radius: 20px;
@@ -217,6 +295,7 @@
       color: var(--muted);
       max-width: 520px;
     }
+
     .fake-chat {
       margin-top: 12px;
       font-size: 0.8rem;
@@ -226,6 +305,7 @@
       background: rgba(5,5,12,0.9);
       border: 1px dashed rgba(255,255,255,0.16);
     }
+
     footer {
       margin-top: 40px;
       font-size: 0.75rem;
@@ -237,11 +317,13 @@
 </head>
 <body>
   <div class="page">
+    <!-- HEADER -->
     <header>
       <div class="logo-wrap">
         <div class="logo-circle">
-          <!-- Cuando subas tu logo, reemplaza la línea de abajo por: <img src="alkemia-logo.png" alt="Alkemia logo" /> -->
-          <img src="alkemia_final.png" alt="Alkemia logo" />
+          <!-- Cuando subas tu logo, cambia este emoji por:
+               <img src="alkemia-logo.png" alt="Logo Alkemia" /> -->
+          🐉
         </div>
         <div class="brand-text">
           <h1>ALKEMIA</h1>
@@ -250,7 +332,24 @@
       </div>
     </header>
 
-    <main>
+    <!-- INTRO FULLSCREEN -->
+    <section class="intro">
+      <div class="intro-logo">
+        <!-- Aquí también puedes usar el PNG del logo -->
+        🐉
+      </div>
+      <h1>ALKEMIA</h1>
+      <p>
+        Mixología evolutiva, espumas, uvas carbonatadas y cócteles de autor
+        diseñados para encender emociones en tus invitados.
+      </p>
+      <a href="#contenido" class="btn btn-primary" id="enter-btn">
+        Entrar a la barra
+      </a>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main id="contenido">
       <!-- HERO -->
       <section class="hero">
         <div>
@@ -377,5 +476,19 @@
       Diseñado para disfrutar responsablemente.
     </footer>
   </div>
+
+  <script>
+    // Scroll suave al contenido al hacer clic en "Entrar a la barra"
+    const enterBtn = document.getElementById('enter-btn');
+    if (enterBtn) {
+      enterBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.getElementById('contenido');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
