@@ -40,16 +40,22 @@
       gap: 12px;
     }
     .logo-circle {
-      width: 52px;
-      height: 52px;
+      width: 60px;
+      height: 60px;
       border-radius: 999px;
       border: 1px solid var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
+      font-size: 30px;
       color: var(--accent-soft);
       background: radial-gradient(circle at top, rgba(143,1,1,0.25), transparent);
+      overflow: hidden;
+    }
+    .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
     .brand-text h1 {
       font-size: 1.4rem;
@@ -227,30 +233,16 @@
       text-align: center;
       opacity: 0.7;
     }
-    input, textarea {
-      width: 100%;
-      margin-top: 8px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(3,3,8,0.9);
-      color: var(--text);
-      font-size: 0.8rem;
-    }
-    textarea { resize: vertical; }
-    .btn-small {
-      margin-top: 8px;
-      padding: 6px 14px;
-      font-size: 0.8rem;
-    }
-    .chat-step p { margin-bottom: 6px; }
   </style>
 </head>
 <body>
   <div class="page">
     <header>
       <div class="logo-wrap">
-        <div class="logo-circle">🐉</div>
+        <div class="logo-circle">
+          <!-- Cuando subas tu logo, reemplaza la línea de abajo por: <img src="alkemia-logo.png" alt="Alkemia logo" /> -->
+          🐉
+        </div>
         <div class="brand-text">
           <h1>ALKEMIA</h1>
           <span>Mixología & Experiencias de Autor</span>
@@ -374,7 +366,7 @@
             Próximamente aquí podrás chatear con un asistente ALKEMIA para diseñar tu experiencia
             (fecha, número de personas, tipo de cocteles, etc.).
             <br><br>
-            Por ahora puedes escribirnos directo por WhatsApp o correo y armamos tu evento a la medida.
+            Por ahora puedes escribirnos directo por WhatsApp y armamos tu evento a la medida.
           </div>
         </div>
       </section>
