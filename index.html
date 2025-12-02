@@ -1,11 +1,389 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>ALKEMIA</title>
-  </head>
-  <body style="background:#111; color:#fff; font-family:Arial; padding:40px;">
-    <h1>🐉 ALKEMIA · Mixología de Autor</h1>
-    <p>La página ya funciona. Ahora sí comenzamos a diseñarla.</p>
-  </body>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>ALKEMIA · Mixología de Autor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050509;
+      --card: #11111a;
+      --accent: #8F0101;
+      --accent-soft: #ff7373;
+      --text: #f5f5f5;
+      --muted: #b3b3c2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1c1c27 0, #050509 45%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent-soft); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 16px 72px;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: var(--accent-soft);
+      background: radial-gradient(circle at top, rgba(143,1,1,0.25), transparent);
+    }
+    .brand-text h1 {
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .brand-text span {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .hero {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 24px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+    .hero h2 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      margin-bottom: 10px;
+    }
+    .hero-highlight {
+      color: var(--accent-soft);
+      font-weight: 600;
+    }
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 16px;
+      max-width: 520px;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #fff;
+      box-shadow: 0 0 18px rgba(143,1,1,0.4);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--muted);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent-soft);
+      color: var(--accent-soft);
+    }
+    .hero-card {
+      background: radial-gradient(circle at top, #24131a 0, #090812 55%);
+      border-radius: 24px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.6);
+      font-size: 0.9rem;
+    }
+    .hero-card h3 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .hero-card strong {
+      color: var(--accent-soft);
+    }
+    section { margin-top: 36px; }
+    h3.section-title {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: rgba(10,10,18,0.96);
+      border-radius: 18px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .card h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .chip {
+      display: inline-flex;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .testimonial {
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-left: 2px solid var(--accent);
+      padding-left: 12px;
+      margin-top: 6px;
+    }
+    .testimonial span {
+      display: block;
+      margin-top: 4px;
+      color: var(--accent-soft);
+      font-size: 0.8rem;
+    }
+    .contact-block {
+      background: linear-gradient(135deg, rgba(143,1,1,0.18), rgba(255,255,255,0.04));
+      border-radius: 20px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.16);
+      margin-top: 8px;
+    }
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .contact-row p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+    .fake-chat {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(5,5,12,0.9);
+      border: 1px dashed rgba(255,255,255,0.16);
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      opacity: 0.7;
+    }
+    input, textarea {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(3,3,8,0.9);
+      color: var(--text);
+      font-size: 0.8rem;
+    }
+    textarea { resize: vertical; }
+    .btn-small {
+      margin-top: 8px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+    }
+    .chat-step p { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="logo-wrap">
+        <div class="logo-circle">🐉</div>
+        <div class="brand-text">
+          <h1>ALKEMIA</h1>
+          <span>Mixología & Experiencias de Autor</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <h2>
+            Cócteles que no son bebidas,<br>
+            son <span class="hero-highlight">experiencias emocionales</span>.
+          </h2>
+          <p>
+            Talleres y barras de mixología de autor para cumpleaños, cenas privadas y eventos corporativos.
+            Diseñados por Gus & equipo ALKEMIA para sorprender a tus invitados.
+          </p>
+          <div class="hero-buttons">
+            <!-- CAMBIA este número por tu Whats real -->
+            <a class="btn btn-primary"
+               href="https://wa.me/5215512345678?text=Hola%20Gus,%20quiero%20cotizar%20un%20evento%20de%20mixolog%C3%ADa%20ALKEMIA"
+               target="_blank">
+              Reservar mi evento
+            </a>
+            <a class="btn btn-ghost" href="#contacto">Quiero más información</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>Experiencia destacada</h3>
+          <p>
+            <strong>“Fernando 60”</strong> · Taller privado para 18 invitados.<br>
+            Gin & Tonic botánico, clásicos modernos con sello ALKEMIA y cóctel de autor
+            <em>“Dirty Pomelo #60”</em>, con uvas carbonatadas y espuma dirty de salmuera.
+          </p>
+        </div>
+      </section>
+
+      <!-- QUÉ HACEMOS -->
+      <section>
+        <h3 class="section-title">Qué hacemos</h3>
+        <p class="section-sub">Diseñamos experiencias líquidas a la medida de tu celebración.</p>
+        <div class="grid">
+          <div class="card">
+            <div class="chip">Talleres privados</div>
+            <h4>Cócteles & aprendizaje</h4>
+            <p>
+              Sesiones de 90–120 minutos donde tus invitados aprenden técnicas básicas de mixología
+              mientras preparan y disfrutan cocteles de autor.
+            </p>
+          </div>
+          <div class="card">
+            <div class="chip">Barras de autor</div>
+            <h4>Servicio tipo cocktail bar</h4>
+            <p>
+              Menús de cocteles personalizados, coctel de bienvenida, clásicos modernos y una firma ALKEMIA
+              diseñada para el festejado o la marca.
+            </p>
+          </div>
+          <div class="card">
+            <div class="chip">Eventos especiales</div>
+            <h4>Cumpleaños, aniversarios & empresas</h4>
+            <p>
+              Adaptamos menú, puesta en escena y storytelling para que la experiencia conecte con tu historia
+              y tus invitados.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- POR QUÉ ALKEMIA -->
+      <section>
+        <h3 class="section-title">Por qué ALKEMIA</h3>
+        <p class="section-sub">
+          No preparamos cócteles para nosotros. Los preparamos para provocar algo en ti.
+        </p>
+        <div class="grid">
+          <div class="card">
+            <h4>Filosofía</h4>
+            <p>
+              Más de 30 años de formación en coctelería. Técnica sólida, creatividad y enfoque en la emoción:
+              cada cóctel busca contar una historia y convertirse en un recuerdo.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Experiencia</h4>
+            <p>
+              Uvas carbonatadas, espumas, reducciones, G&T botánico y cocteles de autor que combinan show,
+              sabor y hospitalidad.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Testimonios</h4>
+            <p class="testimonial">
+              “El evento con ALKEMIA fue un éxito rotundo. Cocteles increíbles, detalles espectaculares y una
+              energía que hizo la noche inolvidable.”
+              <span>Fernando · Cumpleaños 60</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACTO -->
+      <section id="contacto">
+        <h3 class="section-title">¿Quieres cotizar un evento?</h3>
+        <div class="contact-block">
+          <div class="contact-row">
+            <p>
+              Cuéntanos de tu evento: tipo de celebración, fecha, número aproximado de invitados y si tienes
+              algún destilado favorito (gin, whisky, mezcal, etc.).
+            </p>
+            <a class="btn btn-primary"
+               href="https://wa.me/5215512345678?text=Hola%20Gus,%20quiero%20informaci%C3%B3n%20sobre%20un%20evento%20de%20mixolog%C3%ADa%20ALKEMIA."
+               target="_blank">
+              Escribir por WhatsApp
+            </a>
+          </div>
+
+          <div class="fake-chat">
+            Próximamente aquí podrás chatear con un asistente ALKEMIA para diseñar tu experiencia
+            (fecha, número de personas, tipo de cocteles, etc.).
+            <br><br>
+            Por ahora puedes escribirnos directo por WhatsApp o correo y armamos tu evento a la medida.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      ALKEMIA · Mixología de Autor · CDMX & alrededores<br>
+      Diseñado para disfrutar responsablemente.
+    </footer>
+  </div>
+</body>
 </html>
